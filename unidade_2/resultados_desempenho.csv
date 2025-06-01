@@ -1,0 +1,6 @@
+Afinidade,32_threads,64_threads,128_threads,Speedup
+false,0.21,0.34,0.54,0.39
+true,0.15,0.30,0.53,0.40
+close,0.16,0.31,0.55,0.38
+spread,0.16,0.40,0.53,0.40
+master,0.17,0.29,0.57,0.37

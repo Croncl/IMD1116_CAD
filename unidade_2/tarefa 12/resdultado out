@@ -1,0 +1,281 @@
+fixo:
+// Número de passos da simulação
+#define NSTEPS 2000
+
+Execucao 1:
+// Dimensões da malha 3D
+#define NX 100
+#define NY 50
+#define NZ 50
+
+// Número de passos da simulação
+#define NSTEPS 2000
+
+Resultados(out):
+
+cat slurm-1466280.out
+Iniciando simulações com diferentes agendamentos OpenMP:
+[serial] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.007445 s
+[serial] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.006941 s
+[serial] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.006943 s
+[serial] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.006935 s
+[serial] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.006932 s
+[serial] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.006946 s
+[serial] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.006938 s
+[serial] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.006943 s
+[serial] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.006939 s
+[serial] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.006939 s
+Tempo total [serial]: 13.883 segundos
+[static] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.004027 s
+[static] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.000260 s
+[static] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.000264 s
+[static] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000258 s
+[static] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000263 s
+[static] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000262 s
+[static] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000265 s
+[static] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000269 s
+[static] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000263 s
+[static] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000264 s
+Tempo total [static]: 0.436 segundos
+[dynamic] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.005233 s
+[dynamic] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.005240 s
+[dynamic] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.005250 s
+[dynamic] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.005247 s
+[dynamic] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.005229 s
+[dynamic] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.005235 s
+[dynamic] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.005243 s
+[dynamic] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.005243 s
+[dynamic] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.005239 s
+[dynamic] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.005229 s
+Tempo total [dynamic]: 11.086 segundos
+[guided] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.011025 s
+[guided] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.014005 s
+[guided] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.014048 s
+[guided] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000520 s
+[guided] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000510 s
+[guided] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000523 s
+[guided] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000503 s
+[guided] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000489 s
+[guided] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000518 s
+[guided] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000499 s
+Tempo total [guided]: 7.366 segundos
+
+Resumo dos tempos totais:
+Serial : 13.883 s
+Static : 0.436 s
+Dynamic: 11.086 s
+Guided : 7.366 s
+
+Speedup e Eficiência:
+Speedup Static : 31.82	Eficiência: 24.86%
+Speedup Dynamic: 1.25	Eficiência: 0.98%
+Speedup Guided : 1.88	Eficiência: 1.47%
+
+
+
+Execucao 2:
+
+// Dimensões da malha 3D
+#define NX 100
+#define NY 100
+#define NZ 50
+
+
+
+Iniciando simulações com diferentes agendamentos OpenMP:
+[serial] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.014842 s
+[serial] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.014199 s
+[serial] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.014198 s
+[serial] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.014219 s
+[serial] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.014225 s
+[serial] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.014214 s
+[serial] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.014223 s
+[serial] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.014217 s
+[serial] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.014211 s
+[serial] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.014220 s
+Tempo total [serial]: 28.430 segundos
+[static] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.017934 s
+[static] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.000464 s
+[static] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.000463 s
+[static] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000463 s
+[static] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000470 s
+[static] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000468 s
+[static] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000463 s
+[static] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000467 s
+[static] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000464 s
+[static] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000487 s
+Tempo total [static]: 0.835 segundos
+[dynamic] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.011219 s
+[dynamic] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.011207 s
+[dynamic] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.011227 s
+[dynamic] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.011192 s
+[dynamic] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.011143 s
+[dynamic] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.011192 s
+[dynamic] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.011169 s
+[dynamic] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.011207 s
+[dynamic] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.011120 s
+[dynamic] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.011216 s
+Tempo total [dynamic]: 22.398 segundos
+[guided] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.000633 s
+[guided] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.000592 s
+[guided] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.000568 s
+[guided] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000593 s
+[guided] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000586 s
+[guided] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000566 s
+[guided] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000602 s
+[guided] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000579 s
+[guided] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000768 s
+[guided] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000569 s
+Tempo total [guided]: 1.141 segundos
+
+Resumo dos tempos totais:
+Serial : 28.430 s
+Static : 0.835 s
+Dynamic: 22.398 s
+Guided : 1.141 s
+
+Speedup e Eficiência:
+Speedup Static : 34.06	Eficiência: 26.61%
+Speedup Dynamic: 1.27	Eficiência: 0.99%
+Speedup Guided : 24.92	Eficiência: 19.47%
+
+
+
+execucao 3:
+
+
+// Dimensões da malha 3D
+#define NX 100
+#define NY 100
+#define NZ 100
+
+// Número de passos da simulação
+#define NSTEPS 2000
+
+
+
+
+cat slurm-1466284.out
+Iniciando simulações com diferentes agendamentos OpenMP:
+[serial] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.029588 s
+[serial] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.028679 s
+[serial] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.028718 s
+[serial] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.028721 s
+[serial] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.028810 s
+[serial] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.028703 s
+[serial] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.028739 s
+[serial] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.028704 s
+[serial] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.028736 s
+[serial] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.028749 s
+Tempo total [serial]: 57.463 segundos
+[static] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.019243 s
+[static] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.000927 s
+[static] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.000922 s
+[static] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000921 s
+[static] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000924 s
+[static] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000920 s
+[static] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000642 s
+[static] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000660 s
+[static] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000681 s
+[static] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000678 s
+Tempo total [static]: 1.615 segundos
+[dynamic] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.022696 s
+[dynamic] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.036139 s
+[dynamic] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.022307 s
+[dynamic] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.022339 s
+[dynamic] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.022339 s
+[dynamic] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.022398 s
+[dynamic] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.022371 s
+[dynamic] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.022385 s
+[dynamic] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.022352 s
+[dynamic] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.022358 s
+Tempo total [dynamic]: 47.231 segundos
+[guided] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.001113 s
+[guided] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.000923 s
+[guided] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.000974 s
+[guided] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.000955 s
+[guided] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.000943 s
+[guided] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.000915 s
+[guided] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.000932 s
+[guided] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.000939 s
+[guided] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.000923 s
+[guided] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.000953 s
+Tempo total [guided]: 1.847 segundos
+
+Resumo dos tempos totais:
+Serial : 57.463 s
+Static : 1.615 s
+Dynamic: 47.231 s
+Guided : 1.847 s
+
+Speedup e Eficiência:
+Speedup Static : 35.57	Eficiência: 27.79%
+Speedup Dynamic: 1.22	Eficiência: 0.95%
+Speedup Guided : 31.11	Eficiência: 24.31%
+
+
+execucao 4:
+
+// Dimensões da malha 3D
+#define NX 120
+#define NY 120
+#define NZ 120
+
+cat slurm-1466297.out
+Iniciando simulações com diferentes agendamentos OpenMP:
+[serial] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.051766 s
+[serial] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.050443 s
+[serial] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.050276 s
+[serial] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.050235 s
+[serial] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.050167 s
+[serial] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.050201 s
+[serial] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.050164 s
+[serial] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.050180 s
+[serial] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.050197 s
+[serial] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.050168 s
+Tempo total [serial]: 100.430 segundos
+[static] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.019210 s
+[static] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.001436 s
+[static] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.001451 s
+[static] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.001453 s
+[static] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.001017 s
+[static] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.001070 s
+[static] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.001078 s
+[static] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.001075 s
+[static] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.001074 s
+[static] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.001070 s
+Tempo total [static]: 2.352 segundos
+[dynamic] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.039836 s
+[dynamic] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.039182 s
+[dynamic] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.053095 s
+[dynamic] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.039330 s
+[dynamic] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.039296 s
+[dynamic] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.039337 s
+[dynamic] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.039249 s
+[dynamic] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.039248 s
+[dynamic] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.039342 s
+[dynamic] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.039229 s
+Tempo total [dynamic]: 81.557 segundos
+[guided] Passo 0 | Valor central: 1.00000 | Tempo passo: 0.001948 s
+[guided] Passo 200 | Valor central: 0.91475 | Tempo passo: 0.001409 s
+[guided] Passo 400 | Valor central: 0.76057 | Tempo passo: 0.001382 s
+[guided] Passo 600 | Valor central: 0.61388 | Tempo passo: 0.001420 s
+[guided] Passo 800 | Valor central: 0.49478 | Tempo passo: 0.001401 s
+[guided] Passo 1000 | Valor central: 0.40299 | Tempo passo: 0.001420 s
+[guided] Passo 1200 | Valor central: 0.33311 | Tempo passo: 0.001404 s
+[guided] Passo 1400 | Valor central: 0.27964 | Tempo passo: 0.001386 s
+[guided] Passo 1600 | Valor central: 0.23823 | Tempo passo: 0.001408 s
+[guided] Passo 1800 | Valor central: 0.20566 | Tempo passo: 0.001379 s
+Tempo total [guided]: 2.825 segundos
+
+Resumo dos tempos totais:
+Serial : 100.430 s
+Static : 2.352 s
+Dynamic: 81.557 s
+Guided : 2.825 s
+
+Speedup e Eficiência:
+Speedup Static : 42.69	Eficiência: 33.35%
+Speedup Dynamic: 1.23	Eficiência: 0.96%
+Speedup Guided : 35.55	Eficiência: 27.77%
+
