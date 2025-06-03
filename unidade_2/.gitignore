@@ -5,6 +5,7 @@
 # Manter arquivos .csv e .odt (mesmo sem extensão, se aplicável)
 !*.csv
 !*.odt
+!*.png
 
 # Opcional: ignorar arquivos de objeto e binários comuns
 *.o
