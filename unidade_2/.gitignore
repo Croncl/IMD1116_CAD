@@ -1,0 +1,14 @@
+# Ignorar todos os arquivos sem extensão (executáveis no Linux)
+/[^.]*
+!/**/
+
+# Manter arquivos .csv e .odt (mesmo sem extensão, se aplicável)
+!*.csv
+!*.odt
+
+# Opcional: ignorar arquivos de objeto e binários comuns
+*.o
+*.out
+
+.vscode
+output
