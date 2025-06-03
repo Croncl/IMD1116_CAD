@@ -6,6 +6,7 @@
 !*.csv
 !*.odt
 !*.png
+!*.c
 
 # Opcional: ignorar arquivos de objeto e binários comuns
 *.o
