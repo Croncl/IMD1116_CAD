@@ -42,46 +42,30 @@ void simulate_blocking(int rank, int size, int local_cells, TimingMetrics *metri
     struct timeval start, end;
     gettimeofday(&start, NULL);
     
-    for (int t = 0; t < TIME_STEPS; t++) {
-        // Comunicação com vizinhos
-        double comm_start = MPI_Wtime();
-        
-        // Envia borda direita para o processo à direita (se existir)
+    for (int t = 0; t < TIME_STEPS; t++) {// Comunicação com vizinhos
+        double comm_start = MPI_Wtime(); // Envia borda direita para o processo à direita (se existir)
         if (rank < size - 1) {
             MPI_Send(&current[local_cells], 1, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
-        }
-        
-        // Recebe borda esquerda do processo à esquerda (se existir)
+        }  // Recebe borda esquerda do processo à esquerda (se existir)
         if (rank > 0) {
             MPI_Recv(&current[0], 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-        }
-        
-        // Envia borda esquerda para o processo à esquerda (se existir)
+        }  // Envia borda esquerda para o processo à esquerda (se existir)
         if (rank > 0) {
             MPI_Send(&current[1], 1, MPI_DOUBLE, rank - 1, 1, MPI_COMM_WORLD);
-        }
-        
-        // Recebe borda direita do processo à direita (se existir)
+        } // Recebe borda direita do processo à direita (se existir)
         if (rank < size - 1) {
             MPI_Recv(&current[local_cells + 1], 1, MPI_DOUBLE, rank + 1, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
-        
         metrics->communication += MPI_Wtime() - comm_start;
-        
-        // Atualização da temperatura
-        double comp_start = MPI_Wtime();
+        double comp_start = MPI_Wtime(); // Atualização da temperatura
         update_temperature(current, next, local_cells + 2);
         metrics->computation += MPI_Wtime() - comp_start;
-        
-        // Troca os ponteiros para a próxima iteração
-        double *temp = current;
+        double *temp = current; // Troca os ponteiros para a próxima iteração
         current = next;
         next = temp;
     }
-    
     gettimeofday(&end, NULL);
     metrics->total = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
-    
     free(current);
     free(next);
 }
@@ -271,4 +255,27 @@ int main(int argc, char **argv) {
 /*
 mpicc 015_tarefa.c -o 015_tarefa -lm
 mpirun -np 4 ./015_tarefa
+
+
+
+/* mudas tarefa por no 
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1 
+
+#!/bin/bash
+#SBATCH --time=0-0:20
+#SBATCH --partition=amd-512
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1 
+#SBATCH --job-name=015_tarefa_job
+#SBATCH --output=015_tarefa_%j.out
+#SBATCH --error=015_tarefa_%j.err
+
+module load compilers/gnu/14.2.0
+
+# Compila o código
+mpicc 015_tarefa.c -o 015_tarefa -lm
+
+# Executa a simulação
+mpirun -np 2 ./015_tarefa
 */
