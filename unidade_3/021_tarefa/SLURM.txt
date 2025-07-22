@@ -1,0 +1,121 @@
+#!/bin/bash
+
+module load compilers/gnu/14.2.0
+
+# Compilar (só uma vez)
+mpicc -o 021_tarefa 021_tarefa.c -lm -fopenmp
+
+# Configurações
+sizes=("small" "medium" "large")
+nodes_list=(1 2 4)
+procs_list=(1 2 4 8)
+
+mkdir -p jobs
+mkdir -p outputs
+rm -f jobs/*.job
+
+for size in "${sizes[@]}"; do
+    for nodes in "${nodes_list[@]}"; do
+        for procs in "${procs_list[@]}"; do
+
+            # Regras de exclusão
+            [[ "$size" == "large" && "$nodes" -eq 1 ]] && continue
+            [[ "$procs" -lt "$nodes" ]] && continue
+            [[ $((procs % nodes)) -ne 0 ]] && continue
+
+            threads=$((2 * procs / nodes))
+            job_name="job_${size}_${nodes}n_${procs}p"
+
+            cat <<EOF > jobs/$job_name.job
+#!/bin/bash
+#SBATCH --job-name=$job_name
+#SBATCH --output=outputs/${job_name}_%j.out
+#SBATCH --error=outputs/${job_name}_%j.err
+#SBATCH --nodes=$nodes
+#SBATCH --ntasks=$procs
+#SBATCH --cpus-per-task=$threads
+#SBATCH --time=00:30:00
+#SBATCH --partition=intel-512
+
+export OMP_NUM_THREADS=$threads
+mpirun -np $procs ./021_tarefa $size $nodes
+EOF
+
+            sbatch jobs/$job_name.job
+            sleep 0.2
+        done
+    done
+done
+
+echo "Todos os jobs foram submetidos!"
+
+
+
+
+#!/bin/bash
+#SBATCH --job-name=job_missing
+#SBATCH --partition=intel-512
+#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --output=job_missing_%j.out
+#SBATCH --error=job_missing_%j.err
+
+EXEC="./021_tarefa"
+
+problem_sizes=("small" "medium" "large")
+nodes_list=(1 2 4)
+processes_list=(1 2 4 8)
+threads_list=(2 4 8)
+
+# Lista de combinações já testadas (pode colocar todas que você tem)
+tested=(
+"small 1 1 2"
+"small 1 2 4"
+"small 1 4 8"
+"small 1 2 4"
+"small 2 2 2"
+"small 2 4 4"
+"small 2 8 8"
+"small 4 4 2"
+"small 4 8 4"
+"medium 1 1 2"
+"medium 1 2 4"
+"medium 1 4 8"
+"medium 2 2 2"
+"medium 2 4 4"
+"medium 2 8 8"
+"medium 4 4 2"
+"medium 4 8 4"
+"large 2 2 2"
+"large 2 4 4"
+"large 2 8 8"
+"large 4 4 2"
+"large 4 8 4"
+)
+
+# Função para verificar se a combinação foi testada
+function is_tested() {
+    local val="$1 $2 $3 $4"
+    for t in "${tested[@]}"; do
+        if [[ "$t" == "$val" ]]; then
+            return 0  # found
+        fi
+    done
+    return 1  # not found
+}
+
+for size in "${problem_sizes[@]}"; do
+    for n in "${nodes_list[@]}"; do
+        for p in "${processes_list[@]}"; do
+            for t in "${threads_list[@]}"; do
+                if ! is_tested "$size" "$n" "$p" "$t"; then
+                    echo "Executando: $EXEC $size $n $p $t"
+                    # Ajuste SLURM para cada job aqui
+                    sbatch --nodes=$n --ntasks=$p --cpus-per-task=$t --wrap="$EXEC $size $n $p $t"
+                fi
+            done
+        done
+    done
+done

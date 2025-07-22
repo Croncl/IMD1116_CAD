@@ -1,0 +1,38 @@
+fazer o processo dedissipacao de calor, so que em uma chapa.
+como fazer?
+
+ao inver de ser 1 linhas, vao ser varias
+fazer ao inves de celula fantasma, " tira fantasma" ou linha fantasma.
+
+cada linha: cuidado nos saltos dentro da lina( nao por coluna) , ja que demora mais para recuperar os dados
+
+como vai sr:
+
+MPI - 
+laco for do tempo, percrido por todas as threads de todos os prcoessos, em casda rocesso vai ter lacos for aninhados para t, x e y.
+
+testa com #paralel omp for,
+comunicacao com isend e ireceive
+
+volta para o proximo instante de tempo, e cria regiao paralela.
+
+garante que so a thread principal esta fazendo isso.
+
+pode colocar regiao apralela fora do loop de tempo.
+
+pragma omp paralel( antes do tmepo, mas SEM o for)
+
+ex.:
+#pragma omg paralel(sem for)
+ for(t)
+ #pragma omp paralel for colapse():
+  for(x):
+    for(y)
+
+  comunicacao: só uma thread deve fazer, de forma sequencial) - usar MASTER ( so a master se comunica ocm os outros processos, para evitar que durante a comunicacao tenha alguma variavel privada da thread maste, se fizer com outra thread aquela variavel pode na sstar visivel a outra thread.)
+  Se precisar da barreira, Master nao tem barreira implicita
+
+#pragma omg master
+    comunicacao MPI
+
+Tarefa: Implemente uma simulação de dissipação de calor em uma placa 2D quadrada utilizando MPI para processar Tiras horizontais da placa em processos diferentes e OpenMP em cada processo para simular a equação de transferência de calor em cada tira. Procure evitar que o programa bloquei enquanto espera por uma comunicação MPI. Avalie o desempenho do seu programa com 3 tamanhos de problemas diferentes e 1, 2 e 4 nós de computação. Para cada tamanho de problema, use 2, 4 e 8 processos. O maior tamanho de problema não deve rodar em apenas 1 nós por limitação de memória RAM.

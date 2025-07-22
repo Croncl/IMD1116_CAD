@@ -1,0 +1,534 @@
+[clcronje@service0 020_heat]$ cat 020*.out
+Executando para tamanho: 1000x1000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    1000 x 1000 (1 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   9.990010E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0050 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 3.808794E-10
+ Tempo de solução:       0.0029 segundos
+ Tempo médio por passo:  0.0003 segundos
+ Tempo total:            0.3526 segundos
+ Throughput:             3498.75 milhões de células/segundo
+-----------------------------------------------------------------
+Perfilamento para tamanho: 1000x1000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    1000 x 1000 (1 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   9.990010E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0050 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 3.808794E-10
+ Tempo de solução:       0.0453 segundos
+ Tempo médio por passo:  0.0045 segundos
+ Tempo total:            0.7065 segundos
+ Throughput:             220.59 milhões de células/segundo
+-----------------------------------------------------------------
+Collecting data...
+Generating '/tmp/nsys-report-68d8.qdstrm'
+[1/8] [========================100%] report1.nsys-rep
+[2/8] [========================100%] report1.sqlite
+[3/8] Executing 'nvtx_sum' stats report
+[4/8] Executing 'osrt_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)       Med (ns)    Min (ns)    Max (ns)     StdDev (ns)            Name         
+ --------  ---------------  ---------  -------------  ------------  ---------  -----------  -------------  ----------------------
+     55,0    1.004.349.170          9  111.594.352,0  18.262.859,0  1.965.932  316.332.264  139.581.919,0  sem_wait              
+     26,0      488.620.769         27   18.097.065,0   7.381.654,0      1.790  100.178.284   30.533.589,0  poll                  
+     14,0      255.199.965        684      373.099,0      42.084,0      1.087  184.875.238    7.069.208,0  ioctl                 
+      3,0       61.809.959         17    3.635.879,0   2.028.366,0     58.709   20.759.586    6.387.424,0  sem_timedwait         
+      0,0        2.800.530         41       68.305,0      12.597,0      9.259    1.940.988      300.640,0  mmap64                
+      0,0          880.727          4      220.181,0     206.448,0    180.537      287.294       47.185,0  pthread_create        
+      0,0          586.066         76        7.711,0       7.242,0      1.423       22.781        4.630,0  open64                
+      0,0          511.869         45       11.374,0       7.201,0      2.803       44.588       10.975,0  fopen                 
+      0,0          326.751         15       21.783,0       4.584,0      1.962       83.995       26.955,0  write                 
+      0,0          314.527         18       17.473,0      12.057,0      3.757       59.581       14.861,0  mmap                  
+      0,0          107.473          4       26.868,0      11.419,0      7.724       76.911       33.492,0  fgets                 
+      0,0          103.822         40        2.595,0       2.192,0      1.307       11.398        1.943,0  fclose                
+      0,0           93.521          1       93.521,0      93.521,0     93.521       93.521            0,0  pthread_cond_wait     
+      0,0           61.035          7        8.719,0       8.394,0      1.931       17.625        5.433,0  open                  
+      0,0           55.181         15        3.678,0       2.097,0      1.040       23.552        5.639,0  fcntl                 
+      0,0           36.531          3       12.177,0      11.921,0     10.421       14.189        1.897,0  pipe2                 
+      0,0           35.233          5        7.046,0       6.494,0      4.605       11.158        2.472,0  munmap                
+      0,0           35.023          2       17.511,0      17.511,0      9.754       25.269       10.970,0  fread                 
+      0,0           34.181         15        2.278,0       1.875,0      1.143        6.090        1.392,0  read                  
+      0,0           20.745          2       10.372,0      10.372,0      7.617       13.128        3.896,0  socket                
+      0,0           18.527          1       18.527,0      18.527,0     18.527       18.527            0,0  connect               
+      0,0           12.193          3        4.064,0       3.537,0      2.922        5.734        1.478,0  fopen64               
+      0,0            8.420          2        4.210,0       4.210,0      3.944        4.476          376,0  pthread_cond_broadcast
+      0,0            5.069          2        2.534,0       2.534,0      2.320        2.749          303,0  fwrite                
+      0,0            3.077          3        1.025,0       1.033,0      1.009        1.035           14,0  dup                   
+      0,0            2.942          1        2.942,0       2.942,0      2.942        2.942            0,0  bind                  
+      0,0            1.568          1        1.568,0       1.568,0      1.568        1.568            0,0  listen                
+
+[5/8] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)      Med (ns)     Min (ns)    Max (ns)   StdDev (ns)          Name        
+ --------  ---------------  ---------  ------------  ------------  ----------  ----------  -----------  --------------------
+     75,0       20.917.611          1  20.917.611,0  20.917.611,0  20.917.611  20.917.611          0,0  cuMemAllocManaged   
+      8,0        2.328.682          2   1.164.341,0   1.164.341,0   1.065.579   1.263.103    139.670,0  cuMemcpyHtoDAsync_v2
+      4,0        1.339.452          1   1.339.452,0   1.339.452,0   1.339.452   1.339.452          0,0  cuMemAllocHost_v2   
+      4,0        1.302.508          1   1.302.508,0   1.302.508,0   1.302.508   1.302.508          0,0  cuMemcpyDtoHAsync_v2
+      3,0          928.918          4     232.229,0     236.799,0      38.303     417.017    155.082,0  cuMemAlloc_v2       
+      1,0          334.436          1     334.436,0     334.436,0     334.436     334.436          0,0  cuModuleLoadDataEx  
+      1,0          328.122         13      25.240,0      24.747,0       4.743      62.424     15.681,0  cuStreamSynchronize 
+      0,0           83.915         10       8.391,0       5.546,0       4.860      31.663      8.262,0  cuLaunchKernel      
+      0,0            5.097          4       1.274,0         799,0         452       3.046      1.202,0  cuCtxSetCurrent     
+      0,0            2.508          1       2.508,0       2.508,0       2.508       2.508          0,0  cuInit              
+
+[6/8] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Name         
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------------
+    100,0          238.911         10  23.891,0  23.376,0    23.264    27.936      1.431,0  nvkernel_solve_F1L33_2
+
+[7/8] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count   Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)           Operation          
+ --------  ---------------  -----  -----------  -----------  ---------  ---------  -----------  ----------------------------
+     66,0        2.120.981      2  1.060.490,0  1.060.490,0    984.539  1.136.442    107.411,0  [CUDA memcpy Host-to-Device]
+     33,0        1.083.514      1  1.083.514,0  1.083.514,0  1.083.514  1.083.514          0,0  [CUDA memcpy Device-to-Host]
+
+[8/8] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  -----  --------  --------  --------  --------  -----------  ----------------------------
+ 16,000          2  8,000     8,000     8,000     8,000     0,000        [CUDA memcpy Host-to-Device]
+ 8,000           1  8,000     8,000     8,000     8,000     0,000        [CUDA memcpy Device-to-Host]
+
+Generated:
+    /home/clcronje/imd1116_cad/020_heat/report1.nsys-rep
+    /home/clcronje/imd1116_cad/020_heat/report1.sqlite
+Executando para tamanho: 2000x2000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    2000 x 2000 (4 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   4.997501E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0200 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.540011E-10
+ Tempo de solução:       0.0159 segundos
+ Tempo médio por passo:  0.0016 segundos
+ Tempo total:            0.4853 segundos
+ Throughput:             2510.51 milhões de células/segundo
+-----------------------------------------------------------------
+Perfilamento para tamanho: 2000x2000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    2000 x 2000 (4 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   4.997501E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0200 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.540011E-10
+ Tempo de solução:       0.0397 segundos
+ Tempo médio por passo:  0.0040 segundos
+ Tempo total:            0.7777 segundos
+ Throughput:             1006.34 milhões de células/segundo
+-----------------------------------------------------------------
+Collecting data...
+Generating '/tmp/nsys-report-0b0f.qdstrm'
+[1/8] [========================100%] report2.nsys-rep
+[2/8] [========================100%] report2.sqlite
+[3/8] Executing 'nvtx_sum' stats report
+[4/8] Executing 'osrt_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)       Med (ns)     Min (ns)    Max (ns)     StdDev (ns)            Name         
+ --------  ---------------  ---------  -------------  -------------  ---------  -----------  -------------  ----------------------
+     54,0    1.155.303.892          8  144.412.986,0  112.943.176,0  2.067.091  383.067.033  155.010.846,0  sem_wait              
+     29,0      620.572.271         31   20.018.460,0   10.087.623,0      1.931  100.189.114   32.161.511,0  poll                  
+     12,0      254.907.723        683      373.217,0       42.311,0      1.016  180.880.708    6.921.962,0  ioctl                 
+      3,0       67.858.110         22    3.084.459,0    1.817.098,0     40.006   20.702.786    5.698.193,0  sem_timedwait         
+      0,0        2.561.373         41       62.472,0       13.117,0     10.319    1.722.812      266.349,0  mmap64                
+      0,0          945.962          4      236.490,0      236.769,0    161.234      311.190       61.259,0  pthread_create        
+      0,0          634.188         76        8.344,0        7.263,0      1.394       24.283        5.437,0  open64                
+      0,0          521.221         45       11.582,0        7.377,0      2.760       48.754       11.551,0  fopen                 
+      0,0          337.745         19       17.776,0       14.776,0      3.712       67.418       16.409,0  mmap                  
+      0,0          195.231         15       13.015,0        4.741,0      1.283       51.978       18.241,0  write                 
+      0,0          107.470          4       26.867,0       11.552,0      7.430       76.936       33.520,0  fgets                 
+      0,0          107.323          1      107.323,0      107.323,0    107.323      107.323            0,0  pthread_cond_wait     
+      0,0          105.035         40        2.625,0        2.130,0      1.306       10.750        1.944,0  fclose                
+      0,0           66.305          7        9.472,0        8.900,0      1.996       20.112        6.170,0  open                  
+      0,0           49.885          6        8.314,0        6.754,0      4.785       14.319        3.778,0  munmap                
+      0,0           41.091         17        2.417,0        2.213,0      1.185        6.501        1.245,0  read                  
+      0,0           34.247          2       17.123,0       17.123,0      8.977       25.270       11.520,0  fread                 
+      0,0           30.658         20        1.532,0        1.295,0      1.000        2.561          528,0  fcntl                 
+      0,0           24.863          3        8.287,0        8.145,0      4.613       12.105        3.748,0  pipe2                 
+      0,0           24.518          2       12.259,0       12.259,0     11.032       13.486        1.735,0  socket                
+      0,0           16.947          1       16.947,0       16.947,0     16.947       16.947            0,0  connect               
+      0,0           11.508          3        3.836,0        3.499,0      2.865        5.144        1.176,0  fopen64               
+      0,0            8.562          2        4.281,0        4.281,0      2.800        5.762        2.094,0  pthread_cond_broadcast
+      0,0            5.755          2        2.877,0        2.877,0      2.740        3.015          194,0  fwrite                
+      0,0            4.123          1        4.123,0        4.123,0      4.123        4.123            0,0  bind                  
+      0,0            2.108          1        2.108,0        2.108,0      2.108        2.108            0,0  listen                
+      0,0            1.328          1        1.328,0        1.328,0      1.328        1.328            0,0  dup                   
+
+[5/8] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)      Med (ns)     Min (ns)    Max (ns)   StdDev (ns)          Name        
+ --------  ---------------  ---------  ------------  ------------  ----------  ----------  -----------  --------------------
+     52,0       20.932.573          1  20.932.573,0  20.932.573,0  20.932.573  20.932.573          0,0  cuMemAllocManaged   
+     22,0        8.858.105          2   4.429.052,0   4.429.052,0   4.388.409   4.469.696     57.478,0  cuMemcpyHtoDAsync_v2
+     14,0        5.585.685          1   5.585.685,0   5.585.685,0   5.585.685   5.585.685          0,0  cuMemcpyDtoHAsync_v2
+      4,0        1.825.951          1   1.825.951,0   1.825.951,0   1.825.951   1.825.951          0,0  cuMemAllocHost_v2   
+      3,0        1.235.039          4     308.759,0     335.439,0      22.697     541.464    214.848,0  cuMemAlloc_v2       
+      2,0          894.671         13      68.820,0      86.382,0       5.260      87.578     30.599,0  cuStreamSynchronize 
+      1,0          471.345          1     471.345,0     471.345,0     471.345     471.345          0,0  cuModuleLoadDataEx  
+      0,0          107.233         10      10.723,0       6.193,0       5.345      45.751     12.544,0  cuLaunchKernel      
+      0,0            5.665          4       1.416,0       1.137,0         392       2.999      1.125,0  cuCtxSetCurrent     
+      0,0            3.253          1       3.253,0       3.253,0       3.253       3.253          0,0  cuInit              
+
+[6/8] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)           Name         
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------------
+    100,0          856.953         10  85.695,0  85.295,0    85.055    89.503      1.349,0  nvkernel_solve_F1L33_2
+
+[7/8] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count   Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)           Operation          
+ --------  ---------------  -----  -----------  -----------  ---------  ---------  -----------  ----------------------------
+     61,0        8.622.418      2  4.311.209,0  4.311.209,0  4.286.953  4.335.465     34.303,0  [CUDA memcpy Host-to-Device]
+     38,0        5.325.796      1  5.325.796,0  5.325.796,0  5.325.796  5.325.796          0,0  [CUDA memcpy Device-to-Host]
+
+[8/8] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  -----  --------  --------  --------  --------  -----------  ----------------------------
+ 64,000          2  32,000    32,000    32,000    32,000    0,000        [CUDA memcpy Host-to-Device]
+ 32,000          1  32,000    32,000    32,000    32,000    0,000        [CUDA memcpy Device-to-Host]
+
+Generated:
+    /home/clcronje/imd1116_cad/020_heat/report2.nsys-rep
+    /home/clcronje/imd1116_cad/020_heat/report2.sqlite
+Executando para tamanho: 4000x4000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    4000 x 4000 (16 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   2.499375E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0800 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 4.815913E-12
+ Tempo de solução:       0.0262 segundos
+ Tempo médio por passo:  0.0026 segundos
+ Tempo total:            0.8861 segundos
+ Throughput:             6103.86 milhões de células/segundo
+-----------------------------------------------------------------
+Perfilamento para tamanho: 4000x4000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    4000 x 4000 (16 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   2.499375E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0800 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 4.815913E-12
+ Tempo de solução:       0.0458 segundos
+ Tempo médio por passo:  0.0046 segundos
+ Tempo total:            1.2310 segundos
+ Throughput:             3489.78 milhões de células/segundo
+-----------------------------------------------------------------
+Collecting data...
+Generating '/tmp/nsys-report-f44f.qdstrm'
+[1/8] [========================100%] report3.nsys-rep
+[2/8] [========================100%] report3.sqlite
+[3/8] Executing 'nvtx_sum' stats report
+[4/8] Executing 'osrt_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)       Med (ns)    Min (ns)    Max (ns)     StdDev (ns)            Name         
+ --------  ---------------  ---------  -------------  ------------  ---------  -----------  -------------  ----------------------
+     54,0    1.873.715.416          9  208.190.601,0  18.237.801,0  1.986.854  644.047.638  271.455.716,0  sem_wait              
+     34,0    1.177.331.267         50   23.546.625,0  10.088.705,0      3.510  100.180.702   34.270.022,0  poll                  
+      7,0      252.565.085        683      369.787,0      42.204,0      1.143  181.641.717    6.950.598,0  ioctl                 
+      3,0      100.872.135         34    2.966.827,0   2.070.715,0     65.918   21.272.441    4.768.396,0  sem_timedwait         
+      0,0        2.669.907         41       65.119,0      12.382,0      9.200    1.754.538      271.602,0  mmap64                
+      0,0        1.240.111         15       82.674,0       5.194,0      1.907      989.158      251.631,0  write                 
+      0,0          974.187          4      243.546,0     252.554,0    154.769      314.310       65.995,0  pthread_create        
+      0,0          615.253         76        8.095,0       7.299,0      1.470       24.428        5.013,0  open64                
+      0,0          532.310         45       11.829,0       7.577,0      2.911       47.671       11.384,0  fopen                 
+      0,0          295.049         19       15.528,0      11.834,0      3.610       54.680       13.911,0  mmap                  
+      0,0          106.813         40        2.670,0       2.207,0      1.434       10.674        1.827,0  fclose                
+      0,0          104.908          4       26.227,0      11.195,0      7.569       74.948       32.609,0  fgets                 
+      0,0          104.763          1      104.763,0     104.763,0    104.763      104.763            0,0  pthread_cond_wait     
+      0,0           65.179          7        9.311,0       9.716,0      2.060       20.748        6.160,0  open                  
+      0,0           43.370          6        7.228,0       5.849,0      4.483       14.890        3.858,0  munmap                
+      0,0           38.272         16        2.392,0       2.091,0      1.104        6.118        1.257,0  read                  
+      0,0           35.196          2       17.598,0      17.598,0     10.143       25.053       10.543,0  fread                 
+      0,0           31.434         20        1.571,0       1.311,0      1.010        2.547          564,0  fcntl                 
+      0,0           28.273          3        9.424,0      10.344,0      4.655       13.274        4.382,0  pipe2                 
+      0,0           22.323          2       11.161,0      11.161,0      9.461       12.862        2.404,0  socket                
+      0,0           16.823          1       16.823,0      16.823,0     16.823       16.823            0,0  connect               
+      0,0           10.773          3        3.591,0       2.960,0      2.867        4.946        1.174,0  fopen64               
+      0,0            9.000          2        4.500,0       4.500,0      2.645        6.355        2.623,0  pthread_cond_broadcast
+      0,0            5.948          2        2.974,0       2.974,0      2.828        3.120          206,0  fwrite                
+      0,0            3.624          1        3.624,0       3.624,0      3.624        3.624            0,0  bind                  
+      0,0            1.744          1        1.744,0       1.744,0      1.744        1.744            0,0  listen                
+      0,0            1.017          1        1.017,0       1.017,0      1.017        1.017            0,0  dup                   
+
+[5/8] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)      Med (ns)     Min (ns)    Max (ns)   StdDev (ns)          Name        
+ --------  ---------------  ---------  ------------  ------------  ----------  ----------  -----------  --------------------
+     42,0       34.782.051          2  17.391.025,0  17.391.025,0  17.107.049  17.675.002    401.603,0  cuMemcpyHtoDAsync_v2
+     26,0       21.822.142          1  21.822.142,0  21.822.142,0  21.822.142  21.822.142          0,0  cuMemAllocManaged   
+     23,0       19.206.443          1  19.206.443,0  19.206.443,0  19.206.443  19.206.443          0,0  cuMemcpyDtoHAsync_v2
+      4,0        3.399.090         13     261.468,0     334.135,0       4.212     339.953    134.873,0  cuStreamSynchronize 
+      1,0        1.335.972          1   1.335.972,0   1.335.972,0   1.335.972   1.335.972          0,0  cuMemAllocHost_v2   
+      1,0        1.015.437          4     253.859,0     252.475,0      60.116     450.370    159.524,0  cuMemAlloc_v2       
+      0,0          359.127          1     359.127,0     359.127,0     359.127     359.127          0,0  cuModuleLoadDataEx  
+      0,0          118.513         10      11.851,0       6.558,0       4.995      54.642     15.163,0  cuLaunchKernel      
+      0,0            5.300          4       1.325,0         824,0         348       3.304      1.341,0  cuCtxSetCurrent     
+      0,0            2.490          1       2.490,0       2.490,0       2.490       2.490          0,0  cuInit              
+
+[6/8] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)           Name         
+ --------  ---------------  ---------  ---------  ---------  --------  --------  -----------  ----------------------
+    100,0        3.334.190         10  333.419,0  333.102,0   332.638   336.574      1.162,0  nvkernel_solve_F1L33_2
+
+[7/8] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count    Avg (ns)      Med (ns)     Min (ns)    Max (ns)   StdDev (ns)           Operation          
+ --------  ---------------  -----  ------------  ------------  ----------  ----------  -----------  ----------------------------
+     64,0       34.563.144      2  17.281.572,0  17.281.572,0  17.000.454  17.562.690    397.560,0  [CUDA memcpy Host-to-Device]
+     35,0       19.015.162      1  19.015.162,0  19.015.162,0  19.015.162  19.015.162          0,0  [CUDA memcpy Device-to-Host]
+
+[8/8] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  -----  --------  --------  --------  --------  -----------  ----------------------------
+ 256,000         2  128,000   128,000   128,000   128,000   0,000        [CUDA memcpy Host-to-Device]
+ 128,000         1  128,000   128,000   128,000   128,000   0,000        [CUDA memcpy Device-to-Host]
+
+Generated:
+    /home/clcronje/imd1116_cad/020_heat/report3.nsys-rep
+    /home/clcronje/imd1116_cad/020_heat/report3.sqlite
+Executando para tamanho: 8000x8000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    8000 x 8000 (64 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   1.249844E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.3201 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.499020E-10
+ Tempo de solução:       0.1029 segundos
+ Tempo médio por passo:  0.0103 segundos
+ Tempo total:            2.6681 segundos
+ Throughput:             6222.17 milhões de células/segundo
+-----------------------------------------------------------------
+Perfilamento para tamanho: 8000x8000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    8000 x 8000 (64 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   1.249844E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.3201 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.499020E-10
+ Tempo de solução:       0.1335 segundos
+ Tempo médio por passo:  0.0134 segundos
+ Tempo total:            3.1199 segundos
+ Throughput:             4793.58 milhões de células/segundo
+-----------------------------------------------------------------
+Collecting data...
+Generating '/tmp/nsys-report-2b7d.qdstrm'
+[1/8] [========================100%] report4.nsys-rep
+[2/8] [========================100%] report4.sqlite
+[3/8] Executing 'nvtx_sum' stats report
+[4/8] Executing 'osrt_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)       Med (ns)    Min (ns)     Max (ns)      StdDev (ns)            Name         
+ --------  ---------------  ---------  -------------  ------------  ---------  -------------  -------------  ----------------------
+     53,0    4.950.050.180          9  550.005.575,0  11.456.853,0  2.055.521  2.573.481.093  949.975.664,0  sem_wait              
+     40,0    3.737.666.415        134   27.893.032,0  10.091.622,0      2.976    106.707.567   36.743.848,0  poll                  
+      2,0      254.218.492        684      371.664,0      42.002,0      1.007    180.926.309    6.918.550,0  ioctl                 
+      2,0      230.442.402        102    2.259.239,0   2.067.757,0     40.140     20.764.838    2.336.190,0  sem_timedwait         
+      0,0        3.002.365         41       73.228,0      12.872,0     10.156      2.062.802      319.459,0  mmap64                
+      0,0          911.505          4      227.876,0     222.056,0    154.806        312.586       64.805,0  pthread_create        
+      0,0          618.143         76        8.133,0       7.378,0      1.430         20.970        4.873,0  open64                
+      0,0          514.795         45       11.439,0       6.929,0      2.888         47.298       11.057,0  fopen                 
+      0,0          325.373         19       17.124,0      10.501,0      3.816         61.628       15.125,0  mmap                  
+      0,0          189.454         15       12.630,0       4.441,0      1.973         49.238       18.056,0  write                 
+      0,0          108.145          1      108.145,0     108.145,0    108.145        108.145            0,0  pthread_cond_wait     
+      0,0          107.684          4       26.921,0      11.551,0      7.596         76.985       33.518,0  fgets                 
+      0,0          106.655         40        2.666,0       2.230,0      1.426         10.718        1.741,0  fclose                
+      0,0           68.355          7        9.765,0       9.867,0      4.085         14.388        3.606,0  open                  
+      0,0           45.717          6        7.619,0       5.825,0      4.574         17.451        4.949,0  munmap                
+      0,0           35.862          2       17.931,0      17.931,0     10.438         25.424       10.596,0  fread                 
+      0,0           34.389         16        2.149,0       1.809,0      1.067          6.246        1.258,0  read                  
+      0,0           34.072         19        1.793,0       1.609,0      1.085          2.868          600,0  fcntl                 
+      0,0           28.129          3        9.376,0      11.240,0      3.937         12.952        4.787,0  pipe2                 
+      0,0           23.938          2       11.969,0      11.969,0     10.723         13.215        1.762,0  socket                
+      0,0           16.117          1       16.117,0      16.117,0     16.117         16.117            0,0  connect               
+      0,0           11.083          3        3.694,0       3.014,0      2.993          5.076        1.196,0  fopen64               
+      0,0            8.152          2        4.076,0       4.076,0      2.627          5.525        2.049,0  pthread_cond_broadcast
+      0,0            5.640          2        2.820,0       2.820,0      2.791          2.849           41,0  fwrite                
+      0,0            3.996          1        3.996,0       3.996,0      3.996          3.996            0,0  bind                  
+      0,0            1.507          1        1.507,0       1.507,0      1.507          1.507            0,0  listen                
+
+[5/8] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)      Med (ns)     Min (ns)    Max (ns)    StdDev (ns)           Name        
+ --------  ---------------  ---------  ------------  ------------  ----------  -----------  ------------  --------------------
+     60,0      191.894.144          2  95.947.072,0  95.947.072,0  69.664.124  122.230.020  37.169.701,0  cuMemcpyHtoDAsync_v2
+     27,0       88.456.401          1  88.456.401,0  88.456.401,0  88.456.401   88.456.401           0,0  cuMemcpyDtoHAsync_v2
+      6,0       21.050.032          1  21.050.032,0  21.050.032,0  21.050.032   21.050.032           0,0  cuMemAllocManaged   
+      4,0       13.177.768         13   1.013.674,0   1.314.120,0       4.508    1.319.384     567.717,0  cuStreamSynchronize 
+      0,0        1.362.261          1   1.362.261,0   1.362.261,0   1.362.261    1.362.261           0,0  cuMemAllocHost_v2   
+      0,0        1.098.930          4     274.732,0     286.828,0      58.790      466.484     167.539,0  cuMemAlloc_v2       
+      0,0          356.674          1     356.674,0     356.674,0     356.674      356.674           0,0  cuModuleLoadDataEx  
+      0,0          158.735         10      15.873,0      10.575,0       7.174       50.433      13.523,0  cuLaunchKernel      
+      0,0            5.179          4       1.294,0         769,0         437        3.203       1.282,0  cuCtxSetCurrent     
+      0,0            2.352          1       2.352,0       2.352,0       2.352        2.352           0,0  cuInit              
+
+[6/8] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances   Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)           Name         
+ --------  ---------------  ---------  -----------  -----------  ---------  ---------  -----------  ----------------------
+    100,0       13.156.345         10  1.315.634,0  1.314.953,0  1.314.201  1.321.913      2.266,0  nvkernel_solve_F1L33_2
+
+[7/8] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count    Avg (ns)      Med (ns)     Min (ns)    Max (ns)    StdDev (ns)            Operation          
+ --------  ---------------  -----  ------------  ------------  ----------  -----------  ------------  ----------------------------
+     68,0      191.364.714      2  95.682.357,0  95.682.357,0  69.499.951  121.864.763  37.027.513,0  [CUDA memcpy Host-to-Device]
+     31,0       88.210.221      1  88.210.221,0  88.210.221,0  88.210.221   88.210.221           0,0  [CUDA memcpy Device-to-Host]
+
+[8/8] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)           Operation          
+ ----------  -----  --------  --------  --------  --------  -----------  ----------------------------
+ 1024,000        2  512,000   512,000   512,000   512,000   0,000        [CUDA memcpy Host-to-Device]
+ 512,000         1  512,000   512,000   512,000   512,000   0,000        [CUDA memcpy Device-to-Host]
+
+Generated:
+    /home/clcronje/imd1116_cad/020_heat/report4.nsys-rep
+    /home/clcronje/imd1116_cad/020_heat/report4.sqlite
+Executando para tamanho: 16000x16000
+
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    16000 x 16000 (256 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   6.249609E-02
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 1.2802 (deve ser < 0.5 para estabilidade)
+ Status: INSTÁVEL!
+-----------------------------------------------------------------
+
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 3.150927E-04
+ Tempo de solução:       0.3978 segundos
+ Tempo médio por passo:  0.0398 segundos
+ Tempo total:            10.0970 segundos
+ Throughput:             -4360.92 milhões de células/segundo
+-----------------------------------------------------------------

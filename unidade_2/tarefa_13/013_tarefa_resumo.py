@@ -144,7 +144,7 @@ def main():
     print("📊 Iniciando análise dos dados...\n")
     print("📁 Diretório atual:", os.getcwd())
     
-    tamanhos_N = [50, 100, 150, 200, 300]
+    tamanhos_N = [100]
     
     for N in tamanhos_N:
         print(f"\n🔍 Analisando dados para N = {N}...")

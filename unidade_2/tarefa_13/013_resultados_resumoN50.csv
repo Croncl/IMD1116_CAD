@@ -1,6 +1,0 @@
-Afinidade,32_threads,64_threads,128_threads,Speedup
-false,0.17,0.11,0.10,1.69
-true,0.16,0.10,0.10,1.72
-close,0.16,0.11,0.10,1.68
-spread,0.17,0.11,0.10,1.71
-master,0.17,0.11,0.10,1.70

@@ -186,7 +186,7 @@ def main():
     print("Iniciando análise dos dados...")
     
     # Carrega os dados
-    df = carregar_dados_completos('dados_completos.csv')
+    df = carregar_dados_completos('013_resultados_completosN200.csv')
     if df is None:
         print("Não foi possível carregar os dados. Verifique se o arquivo existe.")
         return

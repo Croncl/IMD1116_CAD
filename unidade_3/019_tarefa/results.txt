@@ -1,0 +1,163 @@
+=== SOLUÇÃO DA EQUAÇÃO DO CALOR ===
+=== Paralelização em GPU com OpenMP ===
+
+Objetivos da tarefa:
+1. Paralelizar o cálculo do estêncil térmico na GPU
+2. Analisar transferências de dados entre CPU e GPU
+3. Avaliar desempenho com diferentes tamanhos de problema
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    1000 x 1000 (1 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   9.990010E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0050 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+FASE DE COMPUTAÇÃO:
+ Executando em GPU
+ Completo passo 1/10
+ Completo passo 2/10
+ Completo passo 3/10
+ Completo passo 4/10
+ Completo passo 5/10
+ Completo passo 6/10
+ Completo passo 7/10
+ Completo passo 8/10
+ Completo passo 9/10
+ Completo passo 10/10
+-----------------------------------------------------------------
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 3.808794E-10
+ Tempo de solução:       0.2629 segundos
+ Tempo médio por passo:  0.0263 segundos
+ Tempo total:            0.5060 segundos
+ Throughput:             38.03 milhões de células/segundo
+-----------------------------------------------------------------
+ Comando sugerido para profiling:
+ nsys profile --stats=true ./heat 1000 10
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    2000 x 2000 (4 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   4.997501E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0200 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+FASE DE COMPUTAÇÃO:
+ Executando em GPU
+ Completo passo 1/10
+ Completo passo 2/10
+ Completo passo 3/10
+ Completo passo 4/10
+ Completo passo 5/10
+ Completo passo 6/10
+ Completo passo 7/10
+ Completo passo 8/10
+ Completo passo 9/10
+ Completo passo 10/10
+-----------------------------------------------------------------
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.540011E-10
+ Tempo de solução:       1.5330 segundos
+ Tempo médio por passo:  0.1533 segundos
+ Tempo total:            2.4101 segundos
+ Throughput:             26.09 milhões de células/segundo
+-----------------------------------------------------------------
+ Comando sugerido para profiling:
+ nsys profile --stats=true ./heat 2000 10
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    4000 x 4000 (16 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   2.499375E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.0800 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+FASE DE COMPUTAÇÃO:
+ Executando em GPU
+ Completo passo 1/10
+ Completo passo 2/10
+ Completo passo 3/10
+ Completo passo 4/10
+ Completo passo 5/10
+ Completo passo 6/10
+ Completo passo 7/10
+ Completo passo 8/10
+ Completo passo 9/10
+ Completo passo 10/10
+-----------------------------------------------------------------
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 4.815913E-12
+ Tempo de solução:       6.2147 segundos
+ Tempo médio por passo:  0.6215 segundos
+ Tempo total:            9.5193 segundos
+ Throughput:             25.75 milhões de células/segundo
+-----------------------------------------------------------------
+ Comando sugerido para profiling:
+ nsys profile --stats=true ./heat 4000 10
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+CONFIGURAÇÃO DO PROBLEMA:
+ Tamanho da grade:    8000 x 8000 (64 milhões de células)
+ Passos de tempo:     10
+ Tempo de simulação:  5.000000E-01 segundos
+ Largura da célula:   1.249844E-01
+ Passo de tempo:      5.000000E-02
+ Coeficiente alpha:   1.000000E-01
+-----------------------------------------------------------------
+ANÁLISE DE ESTABILIDADE:
+ Valor de r: 0.3201 (deve ser < 0.5 para estabilidade)
+ Status: Estável
+-----------------------------------------------------------------
+FASE DE COMPUTAÇÃO:
+ Executando em GPU
+ Completo passo 1/10
+ Completo passo 2/10
+ Completo passo 3/10
+ Completo passo 4/10
+ Completo passo 5/10
+ Completo passo 6/10
+ Completo passo 7/10
+ Completo passo 8/10
+ Completo passo 9/10
+ Completo passo 10/10
+-----------------------------------------------------------------
+RESULTADOS DE DESEMPENHO:
+ Erro numérico (L2norm): 1.499020E-10
+ Tempo de solução:       24.5649 segundos
+ Tempo médio por passo:  2.4565 segundos
+ Tempo total:            37.4696 segundos
+ Throughput:             26.05 milhões de células/segundo
+-----------------------------------------------------------------
+ Comando sugerido para profiling:
+ nsys profile --stats=true ./heat 8000 10
+-----------------------------------------------------------------
+
+
+planilha:
+
+[clcronje@service0 019_heat]$ cat 019_heat_*.csv
+Tamanho,Passos,Tempo_Solucao,Throughput,Erro_L2
+1000,10,0.2629,milhões,3.808794E-10
+2000,10,1.5330,milhões,1.540011E-10
+4000,10,6.2147,milhões,4.815913E-12
+8000,10,24.5649,milhões,1.499020E-10

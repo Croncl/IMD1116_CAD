@@ -65,7 +65,7 @@ double run_simulation(const char *affinity_type, int thread_count, int affinity_
         struct timespec start_step, end_step;
         clock_gettime(CLOCK_MONOTONIC, &start_step);
 
-        #pragma omp parallel for collapse(3) proc_bind(spread) schedule(static)
+        #pragma omp parallel for collapse(3) schedule(static)
         for (int i = 1; i < NX - 1; ++i)
             for (int j = 1; j < NY - 1; ++j)
                 for (int k = 1; k < NZ - 1; ++k) {
@@ -249,5 +249,8 @@ gcc -fopenmp 013_tarefa.c -o 013_tarefa -lm
 # Executa a simulação
 ./013_tarefa
 
+
+copiar arquivos depois
+scp -P 4422 clcronje@sc2.npad.ufrn.br:~/imd1116_cad/013_* ~/Downloads/resultados13/
 
 */

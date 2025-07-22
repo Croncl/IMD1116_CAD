@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --partition=gpu-8-v100        # Partição com GPUs V100/A100
+#SBATCH --gpus-per-node=1             # 1 GPU por nó
+#SBATCH --nodes=1                     # 1 nó
+#SBATCH --time=00:10:00               # Tempo máximo (10 minutos)
+#SBATCH --job-name=023_tarefa_cuda    # Nome do job
+#SBATCH --output=023_tarefa_cuda_%j.out
+#SBATCH --error=023_tarefa_cuda_%j.err
+
+module load compilers/nvidia/cuda/12.6
+module load compilers/gnu/14.2.0
+
+# Compilar o código CUDA
+nvcc 023_tarefa_cuda.cu -o 023_tarefa_cuda -lm
+
+# Arquivo consolidado de resultados (tempo e valor central)
+RESULT_FILE="023_tarefa_cuda_results_${SLURM_JOB_ID}.csv"
+
+# Remover arquivo anterior, se existir
+rm -f $RESULT_FILE
+
+echo "Passo,ValorCentral,Tempo" > $RESULT_FILE
+
+echo "Iniciando simulação CUDA 3D com perfilamento NSYS..."
+
+# Executar a simulação com perfilamento NSYS
+nsys profile --stats=true -o 023_tarefa_cuda_profile_${SLURM_JOB_ID} ./023_tarefa_cuda
+
+# O programa CUDA gera um arquivo "simulacao_cuda.csv" com dados da simulação passo a passo
+# Append ao arquivo consolidado com prefixo do job para evitar conflito
+tail -n +2 simulacao_cuda.csv >> $RESULT_FILE
+
+echo "========================================"
+echo "Simulação e perfilamento concluídos."
+echo "- Arquivo consolidado com dados: $RESULT_FILE"
+echo "- Perfil NSYS salvo em: 023_tarefa_cuda_profile_${SLURM_JOB_ID}.qdrep"
+echo "Use Nsight Systems GUI para abrir e analisar o perfil."
